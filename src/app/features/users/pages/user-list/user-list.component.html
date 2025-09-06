@@ -1,47 +1,58 @@
-<div class="header">
-      <h2>Usuários</h2>
-      <button mat-raised-button color="primary" (click)="createUser()">
-        <mat-icon>add</mat-icon> Novo Usuário
-      </button>
-    </div>
+<section aria-labelledby="users-title">
+  <header class="header">
+    <h2 id="users-title">Usuários</h2>
+    <button mat-raised-button color="primary" (click)="createUser()" aria-label="Criar novo usuário">
+      <mat-icon aria-hidden="true">add</mat-icon> Novo Usuário
+    </button>
+  </header>
 
-    <mat-form-field appearance="outline" class="full-width">
-  <mat-label>Pesquisar por Nome ou Email</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Digite para filtrar" />
-</mat-form-field>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Pesquisar por Nome ou Email</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Digite para filtrar"
+      aria-label="Pesquisar usuários por nome ou email"
+    />
+  </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" role="table" aria-label="Tabela de usuários">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef scope="col">Nome</th>
+      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
-      </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef scope="col">Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
-      </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef scope="col">Perfil</th>
+      <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Perfil </th>
-        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
-      </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef scope="col">Ações</th>
+      <td mat-cell *matCellDef="let user">                                  
+        <button mat-icon-button color="primary" (click)="editUser(user.id)" [attr.aria-label]="'Editar usuário ' + user.name">
+          <mat-icon aria-hidden="true">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="confirmDelete(user.id)" [attr.aria-label]="'Editar usuário ' + user.name">
+          <mat-icon aria-hidden="true">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let user">
-          <button mat-icon-button color="primary" (click)="editUser(user.id)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="confirmDelete(user.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayed"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayed"></tr>
+  </table>
 
-      <tr mat-header-row *matHeaderRowDef="displayed"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayed"></tr>
-    </table>
-
-    <mat-paginator [length]="dataSource.data.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
-</mat-paginator>
+  <mat-paginator
+    [length]="dataSource.data.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Paginação de usuários"
+  >
+  </mat-paginator>
+  </section>
