@@ -20,52 +20,8 @@ import { User } from '../../models/user';
     MatSelectModule,
     MatButtonModule
   ],
-  template: `
-    <h2>{{ editing ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
-
-    <form [formGroup]="form" (ngSubmit)="save()" class="form">
-      <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput formControlName="name" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Perfil</mat-label>
-        <mat-select formControlName="role">
-          <mat-option value="admin">Administrador</mat-option>
-          <mat-option value="editor">Editor</mat-option>
-          <mat-option value="viewer">Visualizador</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div class="actions">
-        <button mat-raised-button color="primary" type="submit">
-          Salvar
-        </button>
-        <button mat-stroked-button color="warn" (click)="cancel()">
-          Cancelar
-        </button>
-      </div>
-    </form>
-  `,
-  styles: [`
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 400px;
-    }
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-  `]
+  template: 'user-form.component.html',
+  styleUrl: 'user-form.component.scss'
 })
 export class UserFormComponent implements OnInit {
 
@@ -91,7 +47,7 @@ export class UserFormComponent implements OnInit {
      this.form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    role: ['viewer', Validators.required]
+    role: ['', Validators.required]
   });
   }
   

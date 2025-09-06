@@ -14,6 +14,27 @@ export class TicketService {
       updatedAt: new Date(),
       createdBy: 1,
       assignedTo: 2
+    },{
+      id: 2,
+      title: 'Bug no pagamento',
+      description: 'Usuario relata não conseguir passar o cartão',
+      status: 'em progresso',
+      priority: 'alta',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      createdBy: 1,
+      assignedTo: 2
+    },
+    {
+      id: 3,
+      title: 'Página não carrega',
+      description: 'Usuario relata não conseguir acessar a pagina de pagamento',
+      status: 'aberto',
+      priority: 'baixa',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      createdBy: 1,
+      assignedTo: 2
     }
   ];
 

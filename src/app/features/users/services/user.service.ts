@@ -4,9 +4,9 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private users: User[] = [
-    { id: 1, name: 'Felipe', email: 'felipe@test.com', role: 'user' },
-    { id: 2, name: 'Bob', email: 'bob@dylan.com', role: 'admin' },
-     { id: 3, name: 'Corey', email: 'corey@taylor.com', role: 'admin' }
+    { id: 1, name: 'Felipe', email: 'felipe@test.com', role: 'admin' },
+    { id: 2, name: 'Bob', email: 'bob@dylan.com', role: 'editor' },
+    { id: 3, name: 'Corey', email: 'corey@taylor.com', role: 'viewer' }
   ];
 
   getAll(): User[] { return [...this.users]; }

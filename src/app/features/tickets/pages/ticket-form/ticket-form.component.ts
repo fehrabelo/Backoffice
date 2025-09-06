@@ -22,61 +22,8 @@ import { Ticket } from '../../models/tickets';
     MatButtonModule,
     MatSnackBarModule
   ],
-  template: `
-    <h2>{{ editing ? 'Editar Chamado' : 'Novo Chamado' }}</h2>
-
-    <form [formGroup]="form" (ngSubmit)="save()" class="form">
-      <mat-form-field appearance="outline">
-        <mat-label>Título</mat-label>
-        <input matInput formControlName="title" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput formControlName="description" rows="4"></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Prioridade</mat-label>
-        <mat-select formControlName="priority" required>
-          <mat-option value="low">Baixa</mat-option>
-          <mat-option value="medium">Média</mat-option>
-          <mat-option value="high">Alta</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status" required>
-          <mat-option value="aberto">Aberto</mat-option>
-          <mat-option value="em progresso">Em andamento</mat-option>
-          <mat-option value="fechado">Fechado</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div class="actions">
-        <button mat-raised-button color="primary" type="submit">
-          Salvar
-        </button>
-        <button mat-stroked-button color="warn" type="button" (click)="cancel()">
-          Cancelar
-        </button>
-      </div>
-    </form>
-  `,
-  styles: [`
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 600px;
-    }
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-  `]
+  templateUrl: 'ticket-form.component.html',
+  styleUrl: 'ticket-form.component.scss'
 })
 export class TicketFormComponent implements OnInit {
   
@@ -103,11 +50,10 @@ ngOnInit(): void {
    this.form = this.fb.group({
     title: ['', Validators.required],
     description: [''],
-    priority: ['medium', Validators.required],
-    status: ['open', Validators.required]
+    priority: ['', Validators.required],
+    status: ['', Validators.required]
   });
   }
-
 
  getTicketIdByUrlParam() {
    this.route.params.subscribe(params => {
