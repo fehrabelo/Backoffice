@@ -15,10 +15,10 @@
       aria-label="Pesquisar usuários por nome ou email"
     />
   </mat-form-field>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" role="table" aria-label="Tabela de usuários">
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" role="table" matSort aria-label="Tabela de usuários">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef scope="col">Nome</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Nome</th>
       <td mat-cell *matCellDef="let user">{{ user.name }}</td>
     </ng-container>
 
@@ -28,8 +28,8 @@
     </ng-container>
 
     <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef scope="col">Perfil</th>
-      <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Perfil</th>
+      <td mat-cell *matCellDef="let user">{{ user.role | titlecase }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

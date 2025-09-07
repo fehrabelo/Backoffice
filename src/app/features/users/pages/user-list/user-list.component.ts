@@ -11,6 +11,7 @@ import { ConfirmDialogComponent } from '../../../../shared/componentes/confirm-d
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule],
+    MatDialogModule,
+    MatSortModule],
   templateUrl: 'user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
@@ -32,6 +34,7 @@ export class UserListComponent implements OnInit,AfterViewInit  {
 dataSource = new MatTableDataSource<User>();
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
@@ -43,7 +46,7 @@ ngOnInit(): void {
   this.loadUsers();
 }
 
-ngAfterViewInit() {
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.filterPredicate = (data: User, filter: string) => {
       const search = filter.trim().toLowerCase();
@@ -52,11 +55,19 @@ ngAfterViewInit() {
         data.email.toLowerCase().includes(search)
       );
     };
+
+    this.bindPaginatorAndSort();
   }
 
   loadUsers() {
     //this.users = this.userService.getAll();
     this.dataSource.data = this.userService.getAll();
+    this.dataSource.sort = this.sort; 
+  }
+
+  private bindPaginatorAndSort() {
+    if (this.paginator) this.dataSource.paginator = this.paginator;
+    if (this.sort) this.dataSource.sort = this.sort;
   }
 
    applyFilter(event: Event) {

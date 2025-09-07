@@ -20,7 +20,7 @@ import { User } from '../../models/user';
     MatSelectModule,
     MatButtonModule
   ],
-  template: 'user-form.component.html',
+  templateUrl: 'user-form.component.html',
   styleUrl: 'user-form.component.scss'
 })
 export class UserFormComponent implements OnInit {

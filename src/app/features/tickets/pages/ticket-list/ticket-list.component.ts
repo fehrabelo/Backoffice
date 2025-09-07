@@ -11,15 +11,25 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { HasPermissionDirective } from '../../../auth/directives/haspermission/haspermission.directive';
+import { CanEditTicketDirective } from '../../../auth/directives/can-edit-ticket/caneditticket.directive';
 
 
 @Component({
   selector: 'app-ticket-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-  MatDialogModule],
+  imports: [CommonModule,
+  MatTableModule, 
+  MatButtonModule, 
+  MatIconModule,
+  MatPaginatorModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDialogModule,
+  MatSortModule,
+HasPermissionDirective,
+CanEditTicketDirective],
   templateUrl:'./ticket-list.component.html' ,
   styleUrl: './ticket-list.component.scss'
 })
@@ -29,6 +39,7 @@ export class TicketListComponent implements OnInit,AfterViewInit {
   dataSource = new MatTableDataSource<Ticket>();
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
+   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private ticketService: TicketService, private router: Router,private dialog: MatDialog) {}
 
@@ -44,11 +55,19 @@ export class TicketListComponent implements OnInit,AfterViewInit {
         data.id.toString().includes(search)
       );
     };
+
+    this.bindPaginatorAndSort()
   }
 
   loadTickets() {
      this.dataSource.data = this.ticketService.getAll();
+      this.dataSource.sort = this.sort; 
     //this.tickets = this.ticketService.getAll();
+  }
+  
+   private bindPaginatorAndSort() {
+    if (this.paginator) this.dataSource.paginator = this.paginator;
+    if (this.sort) this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -72,7 +91,7 @@ export class TicketListComponent implements OnInit,AfterViewInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.ticketService.delete(id);
-        this.loadTickets();
+          this.loadTickets();
         }
       });
     }

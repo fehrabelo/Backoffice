@@ -6,7 +6,11 @@ export class UserService {
   private users: User[] = [
     { id: 1, name: 'Felipe', email: 'felipe@test.com', role: 'admin' },
     { id: 2, name: 'Bob', email: 'bob@dylan.com', role: 'editor' },
-    { id: 3, name: 'Corey', email: 'corey@taylor.com', role: 'viewer' }
+    { id: 3, name: 'Corey', email: 'corey@taylor.com', role: 'viewer' },
+    { id: 4, name: 'Bruce', email: 'bruce@dickson.com', role: 'editor' },
+    { id: 5, name: 'Lemmy', email: 'lemmy@kilmister.com', role: 'viewer' },
+    { id: 6, name: 'Naoki', email: 'naoki@urasawa.com', role: 'viewer' },
+    { id: 7, name: 'John', email: 'johnny@cash.com', role: 'viewer' }
   ];
 
   getAll(): User[] { return [...this.users]; }
