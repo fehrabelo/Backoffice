@@ -19,36 +19,36 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" role="table" matSort aria-label="Tabela de chamados">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Código</th>
-      <td mat-cell *matCellDef="let ticket">{{ ticket.id }}</td>
+      <td mat-cell *matCellDef="let ticket" data-label="Código">{{ ticket.id }}</td>
     </ng-container>
 
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef scope="col" >Título</th>
-      <td mat-cell *matCellDef="let ticket">{{ ticket.title }}</td>
+      <td mat-cell *matCellDef="let ticket" data-label="Título">{{ ticket.title }}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Status</th>
-      <td mat-cell *matCellDef="let ticket">{{ ticket.status | titlecase }}</td>
+      <td mat-cell *matCellDef="let ticket" data-label="Status">{{ ticket.status | titlecase }}</td>
     </ng-container>
 
     <ng-container matColumnDef="attendant">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Atendente</th>
-       <td mat-cell *matCellDef="let element">
+       <td mat-cell *matCellDef="let element" data-label="Atendente">
     {{ element.assignedTo | attendantName }}
     </td>
     </ng-container>
 
     <ng-container matColumnDef="priority">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Prioridade</th>
-      <td mat-cell *matCellDef="let ticket">{{ ticket.priority | titlecase }}</td>
+      <td mat-cell *matCellDef="let ticket" data-label="Prioridade">{{ ticket.priority | titlecase }}</td>
     </ng-container>
 
      <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Data Criação</th>
-      <td mat-cell *matCellDef="let ticket">
+      <td mat-cell *matCellDef="let ticket" data-label="Data Criação">
       {{ ticket.createdAt | date:'short':'':'pt-BR' }}
-</td>
+    </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
