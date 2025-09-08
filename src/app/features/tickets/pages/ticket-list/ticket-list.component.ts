@@ -81,7 +81,6 @@ export class TicketListComponent implements OnInit,AfterViewInit {
   this.attendantData = this.tickets
     .map(m => this.users.getById(m.assignedTo))
     .filter((u): u is User => !!u); 
-  console.log(this.attendantData);
 }
   
    private bindPaginatorAndSort() {
