@@ -32,9 +32,23 @@
       <td mat-cell *matCellDef="let ticket">{{ ticket.status | titlecase }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="attendant">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Atendente</th>
+       <td mat-cell *matCellDef="let element">
+    {{ element.assignedTo | attendantName }}
+    </td>
+    </ng-container>
+
     <ng-container matColumnDef="priority">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Prioridade</th>
       <td mat-cell *matCellDef="let ticket">{{ ticket.priority | titlecase }}</td>
+    </ng-container>
+
+     <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" >Data Criação</th>
+      <td mat-cell *matCellDef="let ticket">
+      {{ ticket.createdAt | date:'short':'':'pt-BR' }}
+</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

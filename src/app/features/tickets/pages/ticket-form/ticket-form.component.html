@@ -1,7 +1,7 @@
-<main aria-labelledby="ticket-form-title">
-  <h2 id="ticket-form-title">{{ editing ? 'Editar Chamado' : 'Novo Chamado' }}</h2>
-
+<main class="form-container" aria-labelledby="ticket-form-title">
+  
   <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <h2 id="ticket-form-title">{{ editing ? 'Editar Chamado' : 'Novo Chamado' }}</h2>
     <mat-form-field appearance="outline">
       <mat-label>Título</mat-label>
       <input matInput formControlName="title" required aria-required="true" aria-label="Título do chamado" />
@@ -16,6 +16,35 @@
         aria-label="Descrição do chamado"
       ></textarea>
     </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Atendente</mat-label>
+      <mat-autocomplete #auto="matAutocomplete" formControlName="attendant" required aria-required="true" aria-label="Atendente responsavel pelo chamado">
+       @for (user of users; track user) {
+      <mat-option [value]="user">{{user.name}}</mat-option>
+      }
+  </mat-autocomplete>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Atendente</mat-label>
+  <input
+    type="text"
+    matInput
+    formControlName="attendant"
+    [matAutocomplete]="auto"
+    required
+    aria-required="true"
+    aria-label="Atendente responsável pelo chamado"
+  />
+
+  <mat-autocomplete #auto="matAutocomplete">
+    @for (user of users; track user) {
+      <mat-option [value]="user.name">{{ user.name }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>
+
 
     <mat-form-field appearance="outline">
       <mat-label>Prioridade</mat-label>

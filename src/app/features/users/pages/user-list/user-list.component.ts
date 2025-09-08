@@ -12,6 +12,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-list',
@@ -24,7 +25,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatSortModule],
+    MatSortModule,
+  MatCardModule ],
   templateUrl: 'user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
@@ -60,9 +62,10 @@ ngOnInit(): void {
   }
 
   loadUsers() {
-    //this.users = this.userService.getAll();
-    this.dataSource.data = this.userService.getAll();
+    const getAllUsers = this.userService.getAll();
+    this.dataSource.data = getAllUsers;
     this.dataSource.sort = this.sort; 
+    this.users = getAllUsers;
   }
 
   private bindPaginatorAndSort() {

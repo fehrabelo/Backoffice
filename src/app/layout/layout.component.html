@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
  Backoffice
 </mat-toolbar>
  <button mat-raised-button color="primary" type="submit" (click)="logoutUser()">Sair</button>
@@ -12,9 +12,15 @@
         <mat-icon>assignment</mat-icon> Chamados
       </a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav>-->
 
-  <mat-sidenav-content style="padding: 16px;">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-toolbar color="primary">
+  Backoffice
+  <span class="spacer"></span>
+  <button mat-raised-button color="primary" type="button" (click)="logoutUser()">Sair</button>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

@@ -11,35 +11,7 @@ import { User } from '../../models/user';
   selector: 'app-user-detail',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule],
-  template: `
-    <ng-container *ngIf="user; else notFound">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ user.name }}</mat-card-title>
-          <mat-card-subtitle>{{ user.role | uppercase }}</mat-card-subtitle>
-        </mat-card-header>
-
-        <mat-card-content>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>ID:</strong> {{ user.id }}</p>
-        </mat-card-content>
-
-        <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="goBack()">
-            <mat-icon>arrow_back</mat-icon> Voltar
-          </button>
-          <button mat-stroked-button color="accent" (click)="editUser()">
-            <mat-icon>edit</mat-icon> Editar
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </ng-container>
-
-    <ng-template #notFound>
-      <p>Usuário não encontrado.</p>
-      <button mat-stroked-button color="primary" (click)="goBack()">Voltar</button>
-    </ng-template>
-  `,
+  templateUrl: './user-detail.html',
   styles: [`
     mat-card { max-width: 600px; margin: auto; }
     mat-card-actions { display: flex; justify-content: flex-end; gap: 8px; }

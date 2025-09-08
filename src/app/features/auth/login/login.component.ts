@@ -11,7 +11,8 @@ import { AuthService } from '../../../core/services/auth/auth.service';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit{
   form!: FormGroup<{ email: FormControl<string | null>; password: FormControl<string | null>; }>;

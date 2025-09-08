@@ -14,6 +14,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { HasPermissionDirective } from '../../../auth/directives/haspermission/haspermission.directive';
 import { CanEditTicketDirective } from '../../../auth/directives/can-edit-ticket/caneditticket.directive';
+import { UserService } from '../../../users/services/user.service';
+import { User } from '../../../users/models/user';
+import { AttendantNamePipe } from '../../../../core/services/pipes/attendant-name.pipe';
 
 
 @Component({
@@ -28,20 +31,27 @@ import { CanEditTicketDirective } from '../../../auth/directives/can-edit-ticket
   MatInputModule,
   MatDialogModule,
   MatSortModule,
-HasPermissionDirective,
-CanEditTicketDirective],
+  HasPermissionDirective,
+  CanEditTicketDirective,
+  AttendantNamePipe ],
   templateUrl:'./ticket-list.component.html' ,
   styleUrl: './ticket-list.component.scss'
 })
 export class TicketListComponent implements OnInit,AfterViewInit {
   tickets: Ticket[] = [];
-  displayed = ['id','title', 'status', 'priority', 'actions'];
+  attendantData: User[] = [];
+  displayed = ['id','title', 'status','attendant', 'priority', 'createdAt','actions'];
   dataSource = new MatTableDataSource<Ticket>();
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
    @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private ticketService: TicketService, private router: Router,private dialog: MatDialog) {}
+  constructor(
+    private ticketService: TicketService, 
+    private router: Router,
+    private dialog: MatDialog,
+    private users: UserService
+  ) {}
 
   ngOnInit(): void {
     this.loadTickets();
@@ -60,10 +70,19 @@ export class TicketListComponent implements OnInit,AfterViewInit {
   }
 
   loadTickets() {
-     this.dataSource.data = this.ticketService.getAll();
-      this.dataSource.sort = this.sort; 
-    //this.tickets = this.ticketService.getAll();
+    const getAllTickets = this.ticketService.getAll();
+    this.dataSource.data = getAllTickets;
+    this.dataSource.sort = this.sort; 
+    this.tickets = getAllTickets;
+     this.getUsersById();
   }
+
+ getUsersById() {
+  this.attendantData = this.tickets
+    .map(m => this.users.getById(m.assignedTo))
+    .filter((u): u is User => !!u); 
+  console.log(this.attendantData);
+}
   
    private bindPaginatorAndSort() {
     if (this.paginator) this.dataSource.paginator = this.paginator;

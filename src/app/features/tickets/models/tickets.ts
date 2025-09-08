@@ -7,5 +7,5 @@ export interface Ticket {
   createdAt: Date;
   updatedAt: Date;
   createdBy: number;    // userId
-  assignedTo?: number;  // userId
+  assignedTo: number;  // userId
 }

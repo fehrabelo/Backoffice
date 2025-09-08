@@ -12,7 +12,8 @@ import { AuthService } from '../core/services/auth/auth.service';
   selector: 'app-layout',
   standalone: true,
   imports: [CommonModule, RouterModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatButtonModule],
-  templateUrl: './layout.component.html'
+  templateUrl: './layout.component.html',
+  styleUrl:'./layout.component.scss'
 })
 export class LayoutComponent {
 

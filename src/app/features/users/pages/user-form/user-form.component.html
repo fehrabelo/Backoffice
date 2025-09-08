@@ -1,7 +1,6 @@
-<main aria-labelledby="user-form-title">
-  <h2 id="user-form-title">{{ editing ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
-
+<main class="form-container" aria-labelledby="user-form-title">
   <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <h2 id="user-form-title">{{ editing ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
     <mat-form-field appearance="outline">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="name" required aria-required="true" aria-label="Nome do usuário" />

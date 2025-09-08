@@ -13,7 +13,7 @@ export class TicketService {
       createdAt: new Date(),
       updatedAt: new Date(),
       createdBy: 1,
-      assignedTo: 2
+      assignedTo: 1
     },{
       id: 2,
       title: 'Bug no pagamento',
@@ -34,7 +34,7 @@ export class TicketService {
       createdAt: new Date(),
       updatedAt: new Date(),
       createdBy: 1,
-      assignedTo: 2
+      assignedTo: 3
     }
   ];
 
