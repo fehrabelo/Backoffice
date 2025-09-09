@@ -101,6 +101,10 @@ export class TicketListComponent implements OnInit,AfterViewInit {
     this.router.navigate(['/tickets', id, 'edit']);
   }
 
+viewTicket(id: number) {
+  this.router.navigate(['/tickets', id]);
+}
+
   confirmDelete(id: number) {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         data: { message: 'Deseja excluir esse ticket?' }

@@ -57,6 +57,11 @@
         <button *appCanEditTicket="ticket" mat-icon-button color="primary" (click)="editTicket(ticket.id)"  [attr.aria-label]="'Editar chamado ' + ticket.id">
           <mat-icon aria-hidden="true">edit</mat-icon>
         </button>
+        <button mat-icon-button color="accent"
+        (click)="viewTicket(ticket.id)"
+        [attr.aria-label]="'Visualizar chamado ' + ticket.id">
+        <mat-icon aria-hidden="true">visibility</mat-icon>
+      </button>
         <button *hasPermission="'admin'" mat-icon-button color="warn" (click)="confirmDelete(ticket.id)" [attr.aria-label]="'Excluir chamado ' + ticket.id">
           <mat-icon aria-hidden="true">delete</mat-icon>
         </button>
