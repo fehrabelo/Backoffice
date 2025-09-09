@@ -21,13 +21,11 @@ export class CanEditTicketDirective {
 
     if (!this.currentUser) return;
 
-    // admin pode editar qualquer ticket
     if (this.currentUser.role === 'admin') {
       this.viewContainer.createEmbeddedView(this.templateRef);
       return;
     }
 
-    // editor só pode editar tickets atribuídos a ele
     if (this.currentUser.role === 'editor' && ticket.assignedTo === this.currentUser.id) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     }
